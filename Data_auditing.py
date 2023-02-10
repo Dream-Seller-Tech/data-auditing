@@ -144,3 +144,18 @@ def remove_duplicate_rows(dataset):
     print(duplicate_rows)
     dataset = dataset.drop_duplicates()
     print(dataset)
+
+
+def count_of_each_value(dataset):
+    ## for a single column
+    # value_counts = dataset['possession team1'].value_counts()
+    # min_frequency = value_counts.min()
+    # max_frequency = value_counts.max()
+    # print(value_counts)
+
+    for column in dataset.columns:
+        value_counts = dataset[column].value_counts()
+        print("Column Name is :" + column)
+        min_frequency = value_counts.min()
+        max_frequency = value_counts.max()
+        print(value_counts)
