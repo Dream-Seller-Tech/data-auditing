@@ -179,3 +179,8 @@ def finding_small_dataset(dataset):
     print("Sample data")
     print(dataset.head())
 
+def check_range(dataset):
+    low = 10
+    upper = 110
+    dataset = dataset[(dataset['col2'] >= low) & (dataset['col2'] <= upper)]
+    print(dataset)
