@@ -184,3 +184,15 @@ def check_range(dataset):
     upper = 110
     dataset = dataset[(dataset['col2'] >= low) & (dataset['col2'] <= upper)]
     print(dataset)
+
+
+#to check number of columns within range and percentage
+def number_within_range(dataset):
+    low = 10
+    upper = 110
+    count = len(dataset[(dataset['col2'] >= low) & (dataset['col2'] <= upper)])
+    print("Number of rows within the range = ")
+    print(count)
+
+    print("Percent within range = ")
+    print((count/dataset.shape[0])*100)
