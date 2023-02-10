@@ -138,9 +138,9 @@ def uniqe_value_col(dataset):
 
 
 def remove_duplicate_rows(dataset):
-    duplicates_rows = dataset[dataset.duplicated(keep=False)]
-    print("Number of Duplicate rows:", len(duplicates_rows))
+    duplicate_rows = dataset[dataset.duplicated(keep=False)]
+    print("Number of Duplicate rows:", len(duplicate_rows))
     print("Duplicate rows are :")
-    print(duplicates_rows)
+    print(duplicate_rows)
     dataset = dataset.drop_duplicates()
     print(dataset)
