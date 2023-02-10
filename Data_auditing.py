@@ -159,3 +159,23 @@ def count_of_each_value(dataset):
         min_frequency = value_counts.min()
         max_frequency = value_counts.max()
         print(value_counts)
+
+
+
+def percent_notnull(dataset):
+    for column in dataset.columns:
+        val = dataset[column].count()
+        print("Name of column = " + column)
+        print((val/len(dataset))*100)
+
+def percent_missing_values(dataset):
+    for column in dataset.columns:
+        val = dataset[column].isnull().sum()
+        print("Name of column = " + column)
+        print((val/len(dataset))*100)
+
+
+def finding_small_dataset(dataset):
+    print("Sample data")
+    print(dataset.head())
+
