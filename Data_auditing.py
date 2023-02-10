@@ -162,6 +162,7 @@ def count_of_each_value(dataset):
 
 
 
+
 def percent_notnull(dataset):
     for column in dataset.columns:
         val = dataset[column].count()
