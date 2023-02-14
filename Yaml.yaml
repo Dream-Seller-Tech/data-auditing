@@ -1,0 +1,40 @@
+name_of_students:
+  Name: "Mike" 
+  age: 20
+  Male: true
+
+
+Name_of_students:
+  - Mike
+  - David
+  - Jason
+  - John
+
+name_of_student: ["Mike", "David", "Jason", "John"]
+
+
+
+student_details:
+  - name: "Mike"
+    age: 20
+    email: "Mike@gmail.com"
+  - name: "David"
+    age: 21
+    email: "David@gmail.com"
+  - {name: "Jason", age: 23, email: "Jason@gmail.com"}
+
+
+short_description: >
+  "Hello my name is Mike. I am 
+  20 years
+  old. "
+
+Long_desc: |
+  "I am David and I am an engineer.
+  I am a 
+  topper. I love 
+  coding. "
+
+
+topper: &topper "John"
+who_is_topper: *topper

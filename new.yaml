@@ -1,0 +1,27 @@
+KaggleV2-May-2016.csv:
+  - data_types:
+    - hello
+
+
+  - num_col_rows:
+    - num_col_rows
+  
+  - statistical_values:
+    - Column_name: 
+      - names: ["col1","col2","col3"]
+      - types: ["mean", "median", "mode"]
+    - Column_number: 
+      - nums: [1,2,3,4,5]
+      - types: ["quartiles","Standard deviation"]
+  
+  - frequency_of_word:
+    - Column_name: 
+      - names: ["col1","col2","col3"]
+      - max: True
+    - Column_number: 
+      - nums: [1,2,3,4,5]
+      - min: True
+
+Fifa_world_cup_matches.csv:
+
+  
