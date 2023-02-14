@@ -1,0 +1,33 @@
+KaggleV2-May-2016.csv:
+  - make_changes:
+    - "0"
+  - data_types:
+    - "0"
+  - num_col_rows:
+    - "0"
+  
+  - get_features:
+    - "0"
+
+  - statistical_values:
+    - "0"
+
+
+  - remove_duplicate_rows:
+    - "0"
+    
+  - count_of_each_value:
+    - "0"
+  - percent_missing_values:
+    - "0"
+  - finding_small_dataset:
+    - "0"
+
+  - replace_string_int:
+    - "0"
+  
+  - check_range_dataset:
+    - "0"
+  
+  - number_within_range:
+    - "0- frequency_of_word:- 0- - uniqe_value_col: 0"
