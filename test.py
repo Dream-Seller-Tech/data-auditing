@@ -27,4 +27,4 @@ df['col2'] = np.random.randint(min_value, max_value, size=len(df))
 
 print(df)
 
-print(check_range(df))
+print(check_range_dataset(df))
