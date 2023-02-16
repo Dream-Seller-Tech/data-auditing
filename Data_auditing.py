@@ -2,6 +2,24 @@ import pandas as pd
 import numpy as np
 import random 
 
+def all(dataset):
+    print(make_changes(dataset))
+    print(data_types(dataset))
+    print(num_col_rows(dataset))
+    print(get_features(dataset))
+    print(statistical_values(dataset))
+    print(frequency_of_word(dataset))
+    # print(uniqe_value_col(dataset))
+    print(remove_duplicate_rows(dataset))
+    print(count_of_each_value(dataset))
+    print(percent_notnull(dataset))
+    print(percent_missing_values(dataset))
+    print(finding_small_dataset(dataset))
+    print(replace_string_int(dataset))
+    print(check_range_dataset(dataset))
+    print(number_within_range(dataset))
+
+
 
 def make_changes(dataset):
         #create a new column for checking
@@ -17,6 +35,8 @@ def make_changes(dataset):
 
 
 # Finding datatype of each column
+def data_types1(dataset, colname):
+    return str(dataset[colname].dtype)
 def data_types(dataset):
     column_data_type = {}
     for column in dataset.columns:
@@ -29,6 +49,10 @@ def data_types(dataset):
 
 
 # Finding number of rows and Number of Colunms
+def num_col_rows1(dataset):
+    rows = dataset.shape[0]
+    columns = dataset.shape[1]
+    return(""+str(rows)+" "+str(columns))
 def num_col_rows(dataset):
     rows = dataset.shape[0]
     columns = dataset.shape[1]
@@ -92,12 +116,12 @@ def statistical_values(dataset):
 
 #####editions to be made also to print the word
 def frequency_of_word(dataset):
-    word_counts = dataset["Gender"].str.split().explode().value_counts()
+    word_counts = dataset["Neighbourhood"].str.split().explode().value_counts()
     maxx = word_counts.max()
     minn = word_counts.min()
     # print("Word with Maximum occurance ="+word_counts.idxmax())
     # print("Word with Minimum occurance ="+word_counts.idxmin())
-    return ("Max: "+ str(maxx)+"  Min: "+str(minn))
+    return ("Max: "+ str(maxx)+" Min: "+str(minn))
     
 
 
@@ -121,9 +145,19 @@ def remove_duplicate_rows(dataset):
     print(duplicate_rows)
     dataset = dataset.drop_duplicates()
     print(dataset)
+    return len(duplicate_rows)
 
 
 ####add the value which has minimum
+def count_of_each_value1(dataset, coname):
+    # for a single column
+    value_counts = dataset[coname].value_counts()
+    min_frequency = value_counts.min()
+    max_frequency = value_counts.max()
+    # print("Word with Maximum occurance ="+str(value_counts.idxmax()))
+    # print("Word with Minimum occurance ="+str(word_counts.idxmin()))
+    return ("Max count: "+ str(max_frequency)+" Min count: "+str(min_frequency))
+
 def count_of_each_value(dataset):
     ## for a single column
     # value_counts = dataset['Handcap'].value_counts()
@@ -140,13 +174,20 @@ def count_of_each_value(dataset):
         print(max_frequency)
         print("\n\n")
 
-
+def percent_notnull1(dataset, colname):
+    val = dataset[colname].count()
+    percent = ((val/len(dataset))*100)
+    return("Notnull: " + str(percent))  
 def percent_notnull(dataset):
     for column in dataset.columns:
         val = dataset[column].count()
         print("Name of column = " + column)
         print((val/len(dataset))*100)
 
+def percent_missing1(dataset, colname):
+    val = dataset[colname].isnull().sum()
+    percent = ((val/len(dataset))*100)
+    return("Missing: " + str(percent))  
 def percent_missing_values(dataset):
     for column in dataset.columns:
         val = dataset[column].isnull().sum()
@@ -180,5 +221,5 @@ def number_within_range(dataset):
     print("Number of rows within the range = ")
     print(count)
 
-    print("Percent within range =  ")
+    print("Percent within range = ")
     print((count/dataset.shape[0])*100)
