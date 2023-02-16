@@ -95,6 +95,8 @@ def frequency_of_word(dataset):
     word_counts = dataset["Gender"].str.split().explode().value_counts()
     maxx = word_counts.max()
     minn = word_counts.min()
+    # print("Word with Maximum occurance ="+word_counts.idxmax())
+    # print("Word with Minimum occurance ="+word_counts.idxmin())
     return ("Max: "+ str(maxx)+"  Min: "+str(minn))
     
 
