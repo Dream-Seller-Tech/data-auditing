@@ -36,8 +36,8 @@ def make_changes(dataset):
 
 
 # Finding datatype of each column
-def data_types(dataset):
-    with open('conver.txt', 'a') as file:
+def data_types(dataset,output_file_name):
+    with open(output_file_name, 'a') as file:
         file.write("Data Types are:\n") 
     column_data_type = {}
     for column in dataset.columns:
@@ -46,29 +46,29 @@ def data_types(dataset):
             column_data_type[ctype] += 1
         else:
             column_data_type[ctype] = 1
-    with open('conver.txt', 'a') as convert_file:
+    with open(output_file_name, 'a') as convert_file:
         convert_file.write(json.dumps(column_data_type))
 
     # return type(column_data_type)
 
 
 # Finding number of rows and Number of Colunms
-def num_col_rows(dataset):
-    with open('conver.txt', 'a') as file:
+def num_col_rows(dataset,output_file_name):
+    with open(output_file_name, 'a') as file:
         file.write("\n\nThe Number of Rows and Columns are \n")
     rows = dataset.shape[0]
     columns = dataset.shape[1]
     result = ("Number of rows " + str(rows) + " and the number of columns are " + str(columns))
-    with open('conver.txt', 'a') as file:
+    with open(output_file_name, 'a') as file:
         file.write(result)
 
 
 #Finding List of features of each Column
-def get_features(dataset):
-    with open('conver.txt', 'a') as file:
+def get_features(dataset,output_file_name):
+    with open(output_file_name, 'a') as file:
         file.write("\n\nThe list of features are\n")
     features = dataset.columns.tolist()
-    with open('conver.txt', 'a') as convert_file:
+    with open(output_file_name, 'a') as convert_file:
         convert_file.write(json.dumps(features))
 
 
@@ -83,7 +83,7 @@ def get_features(dataset):
 
 # STATISTICAL VALUE
 # Finding Statistical value of each Column
-def statistical_values(dataset):
+def statistical_values(dataset,output_file_name):
     for column in dataset.columns:   
         if(dataset[column].dtype == np.int64 or  dataset[column].dtype == np.int32):    
             #Mean
@@ -101,7 +101,7 @@ def statistical_values(dataset):
 
         else:
             continue        
-        with open('conver.txt', 'a') as file:
+        with open(output_file_name, 'a') as file:
             file.write("\n\nColumn name = " + column)
             file.write("\nMean = "+ str(mean))
             file.write("\nMedian = "+ str(median))
@@ -113,13 +113,13 @@ def statistical_values(dataset):
             
 
 #This function is only for a particular column
-def frequency_of_word(dataset):
+def frequency_of_word(dataset,output_file_name):
     word_counts = dataset["Gender"].str.split().explode().value_counts()
     maxx = word_counts.max()
     minn = word_counts.min()
     # print("Word with Maximum occurance ="+word_counts.idxmax())
     # print("Word with Minimum occurance ="+word_counts.idxmin())
-    with open('conver.txt', 'a') as file:
+    with open(output_file_name, 'a') as file:
         file.write("\n\nMaximum Frequency of column")
         file.write("Max: "+ str(maxx)+" Min: "+str(minn))
     
@@ -138,25 +138,25 @@ def uniqe_value_col(dataset):
 
 
 # Here to count the number of duplicate rows, we do not run the make_changes() Function
-def remove_duplicate_rows(dataset):
+def remove_duplicate_rows(dataset,output_file_name):
     duplicate_rows = dataset[dataset.duplicated(keep=False)]
     dataset = dataset.drop_duplicates()
     print(dataset)
     # return len(duplicate_rows)
-    with open('conver.txt', 'a') as file:
+    with open(output_file_name, 'a') as file:
         file.write("\n\nNumber of Duplicate rows:"+ str(len(duplicate_rows))) 
 
 
 
 ####add the value which has minimum
-def count_of_each_value1(dataset, coname):
+def count_of_each_value1(dataset, coname,output_file_name):
     # for a single column
     value_counts = dataset[coname].value_counts()
     min_frequency = value_counts.min()
     max_frequency = value_counts.max()
     # print("Word with Maximum occurance ="+str(value_counts.idxmax()))
     # print("Word with Minimum occurance ="+str(word_counts.idxmin()))
-    with open('conver.txt', 'a') as file:
+    with open(output_file_name, 'a') as file:
         file.write("\n\nCount of each value")
         file.write("\nColumn Name : "+ coname) 
         file.write("\nMax count: "+ str(max_frequency)+" Min count: "+str(min_frequency))
@@ -181,10 +181,10 @@ def percent_notnull1(dataset, colname):
     val = dataset[colname].count()
     percent = ((val/len(dataset))*100)
     return("Notnull: " + str(percent))  
-def percent_notnull(dataset):
+def percent_notnull(dataset,output_file_name):
     for column in dataset.columns:
         val = dataset[column].count()
-        with open('conver.txt', 'a') as file:
+        with open(output_file_name, 'a') as file:
             file.write("\n\nName of column = " + column)
             file.write("\n")
             file.write(str((val/len(dataset))*100))
@@ -193,18 +193,18 @@ def percent_missing1(dataset, colname):
     val = dataset[colname].isnull().sum()
     percent = ((val/len(dataset))*100)
     return("Missing: " + str(percent))  
-def percent_missing_values(dataset):
+def percent_missing_values(dataset,output_file_name):
     for column in dataset.columns:
         val = dataset[column].isnull().sum()
-        with open('conver.txt', 'a') as file:
+        with open(output_file_name, 'a') as file:
             file.write("\n\nName of column = " + column)
             file.write("\n")
             file.write(str((val/len(dataset))*100))
 
 
-def finding_small_dataset(dataset):
+def finding_small_dataset(dataset,output_file_name):
     res = dataset.head()
-    with open('conver.txt', 'a') as file:
+    with open(output_file_name, 'a') as file:
         file.write("\n\nSample Data : ")
         print(res, file=file)
         
@@ -221,15 +221,15 @@ def check_range_dataset(dataset):
     low = 10
     upper = 110
     dataset = dataset[(dataset['col2'] >= low) & (dataset['col2'] <= upper)]
-    print(dataset)
+    return dataset
 
 
 #to check number of columns within range and percentage
-def number_within_range(dataset):
+def number_within_range(dataset,output_file_name):
     low = 10
     upper = 110
     count = len(dataset[(dataset['col2'] >= low) & (dataset['col2'] <= upper)])
-    with open('conver.txt', 'a') as file:
+    with open(output_file_name, 'a') as file:
         file.write("\n\nNumber of rows within the range = " + str(count) )
         file.write("\nPercent within range = " +str((count/dataset.shape[0])*100))
  

@@ -5,22 +5,20 @@ import random
 import time
 import os
 
-df = pd.read_csv('KaggleV2-May-2016.csv')
-
-file_names = ['KaggleV2-May-2016']
+# df = pd.read_csv('KaggleV2-May-2016.csv')
 
 
-def add_time():
+def add_time(output_file_name):
     time_now = time.ctime()
-    with open('conver.txt', 'a') as file:
+    with open(output_file_name, 'a') as file:
         file.write(time_now)
         file.write("\n\n")
 
-def add_spacing():
-    with open('conver.txt', 'a') as file:
+def add_spacing(output_file_name):
+    with open(output_file_name, 'a') as file:
         file.write("\n\n")    
         file.write("**************")
-        file.write("\n")
+        file.write("\n\n")
 
 def compare_df(df1,df2):
     if df1.equals(df2):
@@ -28,53 +26,68 @@ def compare_df(df1,df2):
     else:
         print("The files are different.")
 
-# for i in file_names:
-#     fname = i+'.csv'
-#     df = pd.read_csv(fname)
-#     print(df)
-#     print("**************")
-#     name = i+'.txt'
-#     try:
-#         with open(name) as f:
-#             print("File exists")
-#     except FileNotFoundError:
-#         print("File does not exist")
+
+
+csv_output_file_names = ['KaggleV2-May-2016']
+
+for i in csv_output_file_names:
+    fname = i+'.csv'
+    df = pd.read_csv(fname)
+    # print(df)
+    print("**************")
+    output_file_name = i+'.txt'
+    try:
+        with open(output_file_name) as file:
+            print("File exists")
+    except FileNotFoundError:
+        file = open(output_file_name,"x")
+        print("file created")
+
+
+    # to add extra columns to check Data auditing functions
+    make_changes(df)
+
+    #Auditing functions 
+    add_time(output_file_name)
+    data_types(df,output_file_name)
+    data_types(df,output_file_name)
+    num_col_rows(df,output_file_name)
+    get_features(df,output_file_name)
+    statistical_values(df,output_file_name)
+    frequency_of_word(df,output_file_name)
+    remove_duplicate_rows(df,output_file_name)
+    count_of_each_value1(df,"Gender",output_file_name)
+    percent_missing_values(df,output_file_name)
+    finding_small_dataset(df,output_file_name)
+    number_within_range(df,output_file_name)
+    add_spacing(output_file_name)
+
+    edited_csv = i + '_copy.csv'
+    replace_string_int(df)
+    check_range_dataset(df)
+    df.to_csv(edited_csv)
+    
 
 
 
-##Check Remove duplicates
-make_changes(df)
+
+
 # methods_list = ['data_types','num_col_rows','get_features','statistical_values', 'frequency_of_word', 'remove_duplicate_rows','count_of_each_value','percent_notnull','percent_missing_values','finding_small_dataset','replace_string_int','check_range_dataset','number_within_range']
 
-#to run number of times
-for i in range(1):
-    add_time()
-    data_types(df)
-    num_col_rows(df)
-    get_features(df)
-    statistical_values(df)
-    frequency_of_word(df)
-    remove_duplicate_rows(df)
-    count_of_each_value1(df,"Gender")
-    percent_missing_values(df)
-    finding_small_dataset(df)
-    number_within_range(df)
-    add_spacing()
 
 
-
-replace_string_int(df)
-check_range_dataset(df)
+# replace_string_int(df)
+# check_range_dataset(df)
  
+## to make a copy of csv after editing
+# # print(csv_coppy())
+# copy_csv = output_file_names[1]+"copy.csv"
+# df.to_csv("fil.csv")
 
-# print(csv_coppy())
-copy_csv = file_names[1]+"copy.csv"
-df.to_csv("fil.csv")
 
 
-
-print("**********************")
-compare_df(pd.read_csv('file.csv'),pd.read_csv('KaggleV2-May-2016.csv'))
+# print("**********************")
+# compare_df(pd.read_csv('file.csv'),pd.read_csv('KaggleV2-May-2016.csv'))
 
 
 
