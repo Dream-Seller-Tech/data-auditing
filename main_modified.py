@@ -7,19 +7,21 @@ import os
 
 # df = pd.read_csv('KaggleV2-May-2016.csv')
 
-
+#This adds time to the text file every time we need to find store the output
 def add_time(output_file_name):
     time_now = time.ctime()
     with open(output_file_name, 'a') as file:
         file.write(time_now)
         file.write("\n\n")
 
+#Adds spacing in text file for better readability 
 def add_spacing(output_file_name):
     with open(output_file_name, 'a') as file:
         file.write("\n\n")    
         file.write("**************")
         file.write("\n\n")
 
+#compares the new dataframe to the original dataframe
 def compare_df(df1,df2):
     if df1.equals(df2):
         print("The files are identical.")
@@ -27,15 +29,19 @@ def compare_df(df1,df2):
         print("The files are different.")
 
 
-
+#Add the list of CSV files to be run without the '.csv' extension
 csv_output_file_names = ['KaggleV2-May-2016']
 
+#loop to run all the csv file
 for i in csv_output_file_names:
     fname = i+'.csv'
+    #read csv file
     df = pd.read_csv(fname)
     # print(df)
     print("**************")
     output_file_name = i+'.txt'
+
+    #to check whether the text file for a particular csv file is present or not
     try:
         with open(output_file_name) as file:
             print("File exists")
@@ -47,8 +53,9 @@ for i in csv_output_file_names:
     # to add extra columns to check Data auditing functions
     make_changes(df)
 
-    #Auditing functions 
+    #add time
     add_time(output_file_name)
+    #Auditing Functions
     data_types(df,output_file_name)
     data_types(df,output_file_name)
     num_col_rows(df,output_file_name)
@@ -60,8 +67,10 @@ for i in csv_output_file_names:
     percent_missing_values(df,output_file_name)
     finding_small_dataset(df,output_file_name)
     number_within_range(df,output_file_name)
+    # add spacing
     add_spacing(output_file_name)
 
+    # create a updated copy of the csv file after making changes
     edited_csv = i + '_copy.csv'
     replace_string_int(df)
     check_range_dataset(df)
