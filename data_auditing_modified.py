@@ -3,6 +3,8 @@ import numpy as np
 import random 
 import json
 
+#A function which calls all the other functions
+## Function uniqe_value_col prints lots of data so it has been put as a comment 
 def all(dataset):
     print(make_changes(dataset))
     print(data_types(dataset))
@@ -21,7 +23,7 @@ def all(dataset):
     print(number_within_range(dataset))
 
 
-
+#This function adds extra columns to check whether other functions are working or not
 def make_changes(dataset):
         #create a new column for checking
     dataset['NEW'] = pd.Series(
@@ -161,6 +163,8 @@ def count_of_each_value1(dataset, coname,output_file_name):
         file.write("\nColumn Name : "+ coname) 
         file.write("\nMax count: "+ str(max_frequency)+" Min count: "+str(min_frequency))
 
+
+#count of max and min value in each column
 def count_of_each_value(dataset):
     ## for a single column
     # value_counts = dataset['Handcap'].value_counts()
@@ -177,10 +181,12 @@ def count_of_each_value(dataset):
         print(max_frequency)
         print("\n\n")
 
+
 def percent_notnull1(dataset, colname):
     val = dataset[colname].count()
     percent = ((val/len(dataset))*100)
     return("Notnull: " + str(percent))  
+#percent of Not Null Values
 def percent_notnull(dataset,output_file_name):
     for column in dataset.columns:
         val = dataset[column].count()
@@ -193,6 +199,7 @@ def percent_missing1(dataset, colname):
     val = dataset[colname].isnull().sum()
     percent = ((val/len(dataset))*100)
     return("Missing: " + str(percent))  
+#Percentage of missing data
 def percent_missing_values(dataset,output_file_name):
     for column in dataset.columns:
         val = dataset[column].isnull().sum()
@@ -201,7 +208,7 @@ def percent_missing_values(dataset,output_file_name):
             file.write("\n")
             file.write(str((val/len(dataset))*100))
 
-
+#Finding a small dataset
 def finding_small_dataset(dataset,output_file_name):
     res = dataset.head()
     with open(output_file_name, 'a') as file:
