@@ -111,20 +111,6 @@ for i in csv_output_file_names:
     
 
 
-#     #Auditing functions 
-#     add_time(output_file_name)
-    # data_types(df,output_file_name)
-#     data_types(df,output_file_name)
-#     num_col_rows(df,output_file_name)
-#     get_features(df,output_file_name)
-#     statistical_values(df,output_file_name)
-#     frequency_of_word(df,output_file_name)
-#     remove_duplicate_rows(df,output_file_name)
-#     count_of_each_value1(df,"Gender",output_file_name)
-#     percent_missing_values(df,output_file_name)
-#     finding_small_dataset(df,output_file_name)
-#     number_within_range(df,output_file_name)
-#     add_spacing(output_file_name)
 
 #################################################################3
 
